@@ -9,6 +9,9 @@
 
     <a href="/comments/<%=comment._id%>/edit">Edit</a>
     
-
+    <form action="/comments/<%=comment._id%>?_method=DELETE" method="post">
+        <button class="btn btn-sm btn-danger"> Delete</button>
+    </form>
+    
     <a href="/comments">back</a>
 </body>

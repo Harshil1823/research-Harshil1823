@@ -31,6 +31,17 @@ app.get('/', (req, res) => {
     res.send('hello world')
 })
 
+app.get('/new', (req, res) => {
+    res.render('comments/new');
+})
+
+app.post('/comments', async (req, res, next) => {
+    const comment = new Comment(req.body.comment);
+    await comment.save();
+    res.redirect(`/comments/${comment._id}`)
+})
+
+
 app.get('/comments', async (req, res) => {
     const comments = await Comment.find();
     res.render('comments/home', { comments });
@@ -52,6 +63,13 @@ app.put('/comments/:id', async (req, res) => {
     const comment = await Comment.findByIdAndUpdate(id, { ...req.body.comment });
     res.redirect(`/comments/${comment._id}`);
 });
+
+app.delete('/comments/:id', async (req, res) => {
+    const { id } = req.params;
+    await Comment.findByIdAndDelete(id);
+    res.redirect('/comments')
+})
+
 
 app.listen(3000, () => {
     console.log('Connected!!!');
