@@ -22,6 +22,6 @@ app.get('/', (req, res) => {
 })
 
 app.listen(3000, () => {
-    console.log('Connected!!!')
+    console.log('Connected!!!');
     console.log('On port 3000!!!!');
 })
