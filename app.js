@@ -3,7 +3,8 @@ const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
 const ejsMate = require('ejs-mate');
-
+const methodOverride = require('method-override')
+app.use(methodOverride('_method'))
 //acquire the model from mongoose
 const { Comment } = require('./models/comments')
 
@@ -39,6 +40,10 @@ app.get('/comments/:id', async (req, res) => {
     const { id } = req.params;
     const comment = await Comment.findById(id);
     res.render('comments/show', { comment })
+})
+
+app.get('/comments/:id/edit', async (req, res) => {
+    res.render('comments/edit')
 })
 
 app.listen(3000, () => {
