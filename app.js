@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
+const ejsMate = require('ejs-mate');
 
 //acquire the model from mongoose
 const { Comment } = require('./models/comments')
@@ -17,9 +18,9 @@ async function main() {
     }
 }
 
-
-app.set('views', path.join(__dirname, '/views')); // Set the directory for views
+app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs'); // Set EJS as the view engine
+app.set('views', path.join(__dirname, '/views')); // Set the directory for views
 app.use(express.urlencoded({ extended : true })) // give access to express to we can use req.body in post
 
 
@@ -36,8 +37,8 @@ app.get('/comments', async (req, res) => {
 
 app.get('/comments/:id', async (req, res) => {
     const { id } = req.params;
-    const product = await Product.findById(id);
-    res.render('products/show', { product })
+    const comment = await Comment.findById(id);
+    res.render('comments/show', { comment })
 })
 
 app.listen(3000, () => {

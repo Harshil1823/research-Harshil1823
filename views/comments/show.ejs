@@ -1,0 +1,14 @@
+<% layout('layouts/boilerplate') %>
+<body class="mt-12">
+
+    <h1>Name - <%= comment.username %></h1>
+    <h3>comment: <%= comment.comment %></h3>
+    <h6>Created - <%= comment.createdAt.toLocaleDateString('en-US', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+    }) %></h6>
+
+    <a href="/comments/<%=comment._id%>/edit">Edit</a>
+    
+
+    <a href="/comments">back</a>
+</body>
