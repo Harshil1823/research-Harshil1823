@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const path = require('path');
+
 //acquire the model from mongoose
 const { Comment } = require('./models/comments')
 
@@ -15,6 +17,12 @@ async function main() {
     }
 }
 
+
+app.set('views', path.join(__dirname, '/views')); // Set the directory for views
+app.set('view engine', 'ejs'); // Set EJS as the view engine
+app.use(express.urlencoded({ extended : true })) // give access to express to we can use req.body in post
+
+
 main().catch(err => console.log(err));
 
 app.get('/', (req, res) => {
@@ -23,7 +31,7 @@ app.get('/', (req, res) => {
 
 app.get('/comments', async (req, res) => {
     const comments = await Comment.find();
-    res.json(comments);
+    res.render('comments/home', { comments });
 })
 
 app.listen(3000, () => {
