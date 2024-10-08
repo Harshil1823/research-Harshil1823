@@ -47,6 +47,12 @@ app.get('/comments/:id/edit', async (req, res) => {
     res.render('comments/edit', { comment })
 })
 
+app.put('/comments/:id', async (req, res) => {
+    const { id } = req.params;
+    const comment = await Comment.findByIdAndUpdate(id, { ...req.body.comment });
+    res.redirect(`/comments/${comment._id}`);
+});
+
 app.listen(3000, () => {
     console.log('Connected!!!');
     console.log('On port 3000!!!!');
