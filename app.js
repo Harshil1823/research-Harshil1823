@@ -43,7 +43,8 @@ app.get('/comments/:id', async (req, res) => {
 })
 
 app.get('/comments/:id/edit', async (req, res) => {
-    res.render('comments/edit')
+    const comment = await Comment.findById(req.params.id);
+    res.render('comments/edit', { comment })
 })
 
 app.listen(3000, () => {
