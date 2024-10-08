@@ -13,20 +13,20 @@ const commentSchema = new mongoose.Schema({
 const Comment = mongoose.model('Comment', commentSchema);
 
 // Function to generate fake comments
-const createFakeComments = async () => {
-    const fakeComments = [
-        { username: 'user1', comment: 'This is a test comment.' },
-        { username: 'user2', comment: 'Another test comment.' },
-        { username: 'user3', comment: 'Yet another test comment.' },
-    ];
+// const createFakeComments = async () => {
+//     const fakeComments = [
+//         { username: 'user1', comment: 'This is a test comment.' },
+//         { username: 'user2', comment: 'Another test comment.' },
+//         { username: 'user3', comment: 'Yet another test comment.' },
+//     ];
 
-    try {
-        await Comment.insertMany(fakeComments);
-        console.log('Fake comments added successfully!');
-    } catch (err) {
-        console.log('Error adding fake comments:', err);
-    }
-};
+//     try {
+//         await Comment.insertMany(fakeComments);
+//         console.log('Fake comments added successfully!');
+//     } catch (err) {
+//         console.log('Error adding fake comments:', err);
+//     }
+// };
 
 
-module.exports = { Comment, createFakeComments };
+module.exports = { Comment };
