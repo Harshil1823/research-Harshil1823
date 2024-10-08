@@ -24,13 +24,16 @@
           </nav>
 
         <!-- Content -->
-        <h1> Hello </h1>
-
-        <% for (let comment of comments) { %>
-            <ul>
-                <li> <%= comment.username %> - <%= comment.comment %></li>
-            </ul>
-        <% } %>
-
+        <h2>Here are all the comments we have in the Database!</h2>
+        <ul>
+            <% for (let comment of comments) { %>
+                <li>
+                    <a href="/comments/<%=comment._id%>"> 
+                        <%= comment.username %> 
+                    </a>    
+                </li>
+            <% } %>
+        </ul>
+        
     </body>
 </html>
