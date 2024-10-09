@@ -2,16 +2,21 @@
 
 <body>
     <!-- Content -->
-    <h2>Here are all the comments we have in the Database!</h2>
-    <ul>
-        <% for (let comment of comments) { %>
-            <li>
-                <a href="/comments/<%=comment._id%>"> 
-                    <%= comment.username %> 
-                </a>    
-            </li>
-        <% } %>
-    </ul>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Here are all the comments we have in the Database!</h2>
         
+        <div class="row">
+            <% for (let comment of comments) { %>
+                <div class="col-md-6">
+                    <div class="card mb-3 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= comment.username %></h5>
+                            <p class="card-text"><%= comment.comment.substring(0, 100) %>...</p>
+                            <a href="/comments/<%= comment._id %>" class="btn btn-primary btn-sm">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
 </body>
-
